@@ -15,7 +15,7 @@ export function SelectPerson(props) {
             var initials = document.getElementById("assigned-initials"+id);
             initials.style.backgroundColor = person.color;
         }
-    }, [item]);
+    }, [item, id, people]);
 
     function getInitials(personId) {
         var person = people.find(x => x.id === personId);

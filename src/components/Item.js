@@ -7,7 +7,7 @@ export function Item (props) {
     const item = useSelector((state) => state.items.find((x) => x.id === props.id));
     const dispatch = useDispatch();
     
-    let { id, name, estimatedHours, currentHours, assignedTo } = item;
+    let { id, name, estimatedHours, currentHours } = item;
 
     function update(event) {
         if (!event.target.value) {
