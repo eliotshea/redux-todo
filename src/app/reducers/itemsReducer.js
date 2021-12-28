@@ -19,7 +19,7 @@ const initialItems = [
     },
     { 
       id: itemId++,
-      name: "Die",
+      name: "More work",
       estimatedHours: 1,
       currentHours: 0,
       assignedTo: 2,
@@ -27,7 +27,7 @@ const initialItems = [
     },
     { 
         id: itemId++,
-        name: "Shit",
+        name: "Stuff",
         estimatedHours: 1,
         currentHours: 0,
         assignedTo: null,
