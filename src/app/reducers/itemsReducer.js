@@ -44,9 +44,7 @@ export const itemReducer = (state = initialItems, action) => {
                 ...action.payload,
                 
             }] 
-            break;
         case UPDATE_ITEM:
-            console.log(action.payload);
             return state.map((x) => {
                 if(x.id === action.payload.id){
                     return {
@@ -59,7 +57,6 @@ export const itemReducer = (state = initialItems, action) => {
             });
         case DELETE_ITEM:
             return state.filter((x) => x.id !== action.payload)
-            break;
         default:
             return state;
     }

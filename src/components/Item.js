@@ -1,10 +1,6 @@
-import { current } from "@reduxjs/toolkit";
-import { useEffect, useState } from "react";
-import { isElement } from "react-dom/test-utils";
 import { useDispatch, useSelector } from "react-redux";
 import { deleteItem, updateItem } from "../app/actions";
 import { ItemStatuses } from "../app/reducers/itemsReducer";
-import { Assignee } from "./Assignee";
 import { SelectPerson } from "./SelectPerson";
 
 export function Item (props) {

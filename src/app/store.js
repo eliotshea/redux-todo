@@ -1,6 +1,5 @@
 import { combineReducers, configureStore } from '@reduxjs/toolkit';
 import debounce from 'debounce';
-import { addItem, updateProject } from './actions';
 import { itemReducer } from './reducers/itemsReducer';
 import { personReducer } from './reducers/peopleReducer';
 import { projectReducer } from './reducers/projectReducer';

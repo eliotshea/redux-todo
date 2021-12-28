@@ -1,4 +1,4 @@
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { ItemStatuses } from "../app/reducers/itemsReducer";
 import { AddItem } from "./AddItem";
 import { Item } from "./Item";
@@ -6,7 +6,6 @@ import { Item } from "./Item";
 
 export function ItemList () {
     const items =  useSelector((state) => state.items);
-    const dispatch = useDispatch();
 
     return <div>
         <div className="item-lists">
