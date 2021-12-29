@@ -1,4 +1,3 @@
-import debounce from "debounce";
 import { useDispatch, useSelector } from "react-redux";
 import { deleteItem, moveItem, updateItem } from "../app/actions";
 import { ItemStatuses } from "../app/reducers/itemsReducer";
@@ -9,10 +8,6 @@ export function Item (props) {
     const dispatch = useDispatch();
     
     let { id, name, estimatedHours, currentHours } = item;
-
-    var todo = document.getElementById("todo");
-    var inProgress = document.getElementById("in-progress");
-    var done = document.getElementById("done");
 
     function update(event) {
         if (!event.target.value) {
@@ -130,11 +125,11 @@ export function Item (props) {
         return list.children.length + 1;
     }
 
-    function animateLi(element, index) {
-        for(var i = index; i < element.children.length; i++) {
-            element.children[i].style.transform = `translateY(100%)`;
-        }
-    }
+    // function animateLi(element, index) {
+    //     for(var i = index; i < element.children.length; i++) {
+    //         element.children[i].style.transform = `translateY(100%)`;
+    //     }
+    // }
 
     return (
         <li className="item" draggable onDragStart={handleDragStart} onTouchStart={handleDragStart} onDrag={handleDrag} onTouchMove={handleDrag} onDragEnd={handleDragEnd} onTouchEnd={handleDragEnd}>
