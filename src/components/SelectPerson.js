@@ -5,7 +5,7 @@ import { updateItem } from "../app/actions";
 export function SelectPerson(props) {
     const { id } = props;
     const item = useSelector((state) => state.items.find(x => x.id === id));
-    const people = useSelector((state) => state.people);
+    const people = useSelector((state) => state.people.list);
     const dispatch = useDispatch();
     let open = false;
     

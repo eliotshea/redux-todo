@@ -3,17 +3,26 @@ export const ADD_ITEM = "ADD_ITEM";
 export const addItem = (item) => ({
     type: ADD_ITEM,
     payload: item
-})
+});
 
 export const DELETE_ITEM = "DELETE_ITEM";
 export const deleteItem = (id) => ({
     type: DELETE_ITEM,
     payload: id
-})
+});
 
 export const UPDATE_ITEM = "UPDATE_ITEM";
 export const updateItem = (id, item) => ({
     type: UPDATE_ITEM,
+    payload: {
+        id: id,
+        item: item
+    }
+});
+
+export const MOVE_ITEM = "MOVE_ITEM";
+export const moveItem = (id, item) => ({
+    type: MOVE_ITEM,
     payload: {
         id: id,
         item: item

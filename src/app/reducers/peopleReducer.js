@@ -1,48 +1,62 @@
 import { ADD_PERSON, UPDATE_PERSON, DELETE_PERSON } from "../actions"
 
-var peopleId = 1;
-const initialPeople = [
-    {
-      id: peopleId++,
-      firstName: "Eliot",
-      lastName: "Shea",
-      color: "red",
-    },
-    {
-      id: peopleId++,
-      firstName: "Billy",
-      lastName: "Lieblick",
-      color: "blue",
-    },
-    {
-        id: peopleId++,
-        firstName: "Marty",
-        lastName: "Thompson",
-        color: "green",
-    },
-    {
-        id: peopleId++,
-        firstName: "Ryan",
-        lastName: "DeLeo",
-        color: "orange",
-    },
-    {
-        id: peopleId++,
-        firstName: "Sam",
-        lastName: "Rhea",
-        color: "navy",
-    }
-]
+const initialPeople = {
+    list: [
+        {
+        id: 1,
+        firstName: "Eliot",
+        lastName: "Shea",
+        color: "red",
+        },
+        {
+        id: 2,
+        firstName: "Billy",
+        lastName: "Lieblick",
+        color: "blue",
+        },
+        {
+            id: 3,
+            firstName: "Marty",
+            lastName: "Thompson",
+            color: "green",
+        },
+        {
+            id: 4,
+            firstName: "Ryan",
+            lastName: "DeLeo",
+            color: "orange",
+        },
+        {
+            id: 5,
+            firstName: "Sam",
+            lastName: "Rhea",
+            color: "navy",
+        }
+    ],
+    count: 5,
+}
   
 
 export const personReducer = (state = initialPeople, action) => {
     switch (action.type) {
         case ADD_PERSON:
-            return [...state, action.payload]
+            return {
+                ...state,
+                list: [...state.list,
+                {
+                    ...action.payload,
+                    id: state.count + 1,
+                }],
+                count: state.count + 1,
+            }
         case UPDATE_PERSON:
             break;
         case DELETE_PERSON:
-            return state.filter((x) => x.id === action.payload)
+            return {
+                ...state,
+                list: state.list.filter((x) => x.id === action.payload),
+                count: state.count - 1
+            }
         default:
             return state;
     }
