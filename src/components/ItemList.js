@@ -5,7 +5,7 @@ import { Item } from "./Item";
  
 
 export function ItemList () {
-    const items =  useSelector((state) => state.items);
+    const items =  useSelector((state) => state.items.list);
 
     const todo = items.filter((item) => item.status === ItemStatuses.Todo).sort((a, b) => a.priority - b.priority);
     const inProgress = items.filter((item) => item.status === ItemStatuses.InProgress).sort((a, b) => a.priority - b.priority);

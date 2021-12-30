@@ -16,12 +16,13 @@
 .item-row {
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  justify-content: flex-start;
 }
 
 .item-row button {
   background-color: white;
   border: none;
+  margin-left: auto;
 }
 
 .item-name {
@@ -30,6 +31,7 @@
 
 .item-hours-col {
   font-size: small;
+  justify-self: flex-start !important;
 }
 
 .item-current-hours input {
@@ -55,7 +57,7 @@
 
 .item-list ul li {
   margin-bottom: 1em;
-  transition: all ease-in-out;
+  transition: transform ease-in-out 200ms;
 }
 
 #outer-add-modal {
@@ -129,6 +131,14 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  transition: transform 0.25s ease-in-out;
+  margin-right: 0.75em;
+  margin-left: 0.5em;
+}
+
+.assigned-initials:active {
+  box-shadow: none;
+  transform: scale(0.95);
 }
 
 .assign-options {

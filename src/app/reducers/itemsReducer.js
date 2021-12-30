@@ -1,16 +1,15 @@
 import { ADD_ITEM, UPDATE_ITEM, DELETE_ITEM, MOVE_ITEM } from "../actions"
 
-var itemId = 1;
-
 export const ItemStatuses = {
     Todo: "TODO",
     InProgress: "INPROGRESS",
     Done: "DONE"
 }
 
-const initialItems = [
+const initialItems = {
+    list: [
     { 
-      id: itemId++,
+      id: 1,
       name: "Do Work",
       estimatedHours: 5,
       currentHours: 0,
@@ -19,7 +18,7 @@ const initialItems = [
       priority: 1,
     },
     { 
-      id: itemId++,
+      id: 2,
       name: "More work",
       estimatedHours: 1,
       currentHours: 0,
@@ -28,7 +27,7 @@ const initialItems = [
       priority: 2,
     },
     { 
-        id: itemId++,
+        id: 3,
         name: "Stuff",
         estimatedHours: 1,
         currentHours: 0,
@@ -36,7 +35,9 @@ const initialItems = [
         status: ItemStatuses.Todo,
         priority: 3,
     }
-  ]
+  ],
+  count: 3
+}
 function statusToIndex(status) {
     switch(status) {
         case ItemStatuses.Todo:
@@ -45,38 +46,50 @@ function statusToIndex(status) {
             return 1;
         case ItemStatuses.Done:
             return 2;
+        default:
+            return undefined;
     }
 }
 
 export const itemReducer = (state = initialItems, action) => {
     switch (action.type) {
         case ADD_ITEM:
-            return [...state, {
-                id: itemId++,
+            return {
+                ...state,
+                list: [...state.list, {
+                id: state.count + 1,
                 ...action.payload,
-                
-            }] 
+                }],
+                count: state.count + 1
+            }
         case UPDATE_ITEM:
-            return state.map((x) => {
-                if(x.id === action.payload.id){
-                    return {
-                        id: x.id,
-                        ...action.payload.item
+            return {
+                ...state,
+                list: state.list.map((x) => {
+                    if(x.id === action.payload.id){
+                        return {
+                            id: x.id,
+                            ...action.payload.item
+                        }
+                    } else {
+                        return x;
                     }
-                } else {
-                    return x;
-                }
-            });
+                })
+            };
         case DELETE_ITEM:
-            return state.filter((x) => x.id !== action.payload)
+            return {
+                ...state,
+                list: state.list.filter((x) => x.id !== action.payload)
+            }
         case MOVE_ITEM:
             var newItem = action.payload.item;
-            var oldItem = state.find(x => x.id === newItem.id);
+            console.log(state.list);
+            var oldItem = state.list.find(x => x.id === newItem.id);
             
             //get 3 arrays containing all the elements of each status
             var statuses = [ItemStatuses.Todo, ItemStatuses.InProgress, ItemStatuses.Done];
             var eachColumn = statuses.map((status) => {
-                return state.filter((x) => x.status === status).sort((a, b) => a.priority - b.priority);
+                return state.list.filter((x) => x.status === status).sort((a, b) => a.priority - b.priority);
             });
 
             var index = statusToIndex(newItem.status);
@@ -90,7 +103,10 @@ export const itemReducer = (state = initialItems, action) => {
                     item.priority = index + 1;
                 })
             });
-            return [...eachColumn[0], ...eachColumn[1], ...eachColumn[2]];
+            return {
+                ...state,
+                list: [...eachColumn[0], ...eachColumn[1], ...eachColumn[2]]
+            };
         default:
             return state;
     }
